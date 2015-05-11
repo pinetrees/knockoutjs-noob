@@ -1,0 +1,51 @@
+<h2>Places</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="well">
+            <ul id="check-list-box" class="list-group checked-list-box">
+                <li class="list-group-item header">
+                    <div class="row" style="font-weight: bold">
+                        <div class="col-md-2">
+                            Name
+                        </div>
+                        <div class="col-md-7">
+                            Address
+                        </div>
+                        <div class="col-md-3">
+                            Next visit
+                        </div>
+                    </div>
+                </li>
+                <!-- ko foreach: items -->
+                <li class="list-group-item active" data-color="success">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span data-bind="text: name"></span>
+                        </div>
+                        <div class="col-md-7">
+                            <span data-bind="text: address"></span>
+                        </div>
+                        <div class="col-md-3">
+                            <span data-bind="text: visit"></span>
+                        </div>
+                    </div>
+                </li>
+                <!-- /ko -->
+                <li class="list-group-item active" data-color="success">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input data-bind="value: itemToAdd().name, event: { keypress: possiblyAddItem }, valueUpdate: 'keypress'" type="text" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="col-md-7">
+                            <input data-bind="value: itemToAdd().address, event: { keypress: possiblyAddItem }, valueUpdate: 'keypress'" type="text" class="form-control" placeholder="Address">
+                        </div>
+                        <div class="col-md-3">
+                            <input data-bind="value: itemToAdd().visit, event: { keypress: possiblyAddItem }, valueUpdate: 'keypress'" type="text" class="form-control" placeholder="Next visit">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

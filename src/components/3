@@ -1,0 +1,56 @@
+define(["knockout", "text!./schedule.html"], function(ko, scheduleTemplate) {
+
+  var ActivityModel = function(time, activity){
+      var self = this;
+      self.time = ko.observable(time);
+      self.activity = ko.observable(activity);
+  };
+
+  var ScheduleViewModel = function(route) {
+      var self = this;
+      this.items = ko.observableArray([
+          new ActivityModel('7:30 am', 'Wake up'),
+          new ActivityModel('8:00 am', 'Central Park'),
+          new ActivityModel('9:00 am', 'Breakfast'),
+          new ActivityModel('9:30 am', 'Work'),
+          new ActivityModel('11:00 am', 'Commute'),
+          new ActivityModel('11:40 am', 'Lunch'),
+          new ActivityModel('12:00 pm', 'Work'),
+          new ActivityModel('3:30 pm', 'Walk daisy'),
+      ]);
+
+      this.newItem = function() {
+          return new ActivityModel("", "");
+      };
+      this.itemToAdd = ko.observable(this.newItem());
+
+      this.addItem = function(item) {
+          this.items.push(item());
+          this.itemToAdd(this.newItem());
+      }.bind(this);
+
+      this.possiblyAddItem = function(data, event) {
+          if( event.keyCode == 13 ) {
+              this.addItem(this.itemToAdd);
+          }
+          return true;
+      };
+
+      this.removeItem = function(item){
+          self.items.remove(item);
+          return false;
+      };
+
+      this.toggleItem = function() {
+          this.checked(!this.checked());
+          console.log(this.checked());
+      };
+  };
+
+  ScheduleViewModel.prototype.doSomething = function() {
+    this.message('You invoked doSomething() on the viewmodel.');
+  };
+
+  return { viewModel: ScheduleViewModel, template: scheduleTemplate };
+
+});

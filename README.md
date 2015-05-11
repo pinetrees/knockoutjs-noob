@@ -1,1 +1,1 @@
-# knockoutjs-noob
+# koi-fish - KnockoutJS Inventory

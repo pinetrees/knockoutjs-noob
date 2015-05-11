@@ -1,0 +1,20 @@
+<h2>Tasks</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="well">
+            <ul id="check-list-box" class="list-group checked-list-box">
+                <li class="list-group-item">
+                <input data-bind="value: itemToAdd().name, event: { keypress: possiblyAddItem }, valueUpdate: 'keypress'" type="text" class="form-control" placeholder="Add an item...">
+                </li>
+                <span data-bind="foreach: items">
+                <li class="list-group-item active" data-color="success" data-bind="css: { 'list-group-item-success': checked }, click: $parent.toggleItem">
+                    <span class="state-icon glyphicon" data-bind="css: { 'glyphicon-unchecked': !checked(), 'glyphicon-check': checked() }"></span>
+                    <span data-bind="text: name"></span>
+                    <span class="pull-right glyphicon glyphicon-remove" data-bind="click: $parent.removeItem"></span>
+                </li>
+            </span>
+            </ul>
+        </div>
+    </div>
+</div>
